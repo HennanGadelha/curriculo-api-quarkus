@@ -1,7 +1,6 @@
-package org.acme.curriculo.titular.model;
+package org.acme.curriculo;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
-import org.acme.curriculo.model.Curriculo;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -15,14 +14,11 @@ public class TitularCurriculo extends PanacheEntity {
     @Column(length = 60, unique = true)
     private String nome;
     @Column(length = 60, unique = true)
-    private String cpf;
-    @Column(length = 60, unique = true)
     private String email;
 
-    public TitularCurriculo(String nome, String cpf, String email) {
+    public TitularCurriculo(String nome, String email) {
         this.id = UUID.randomUUID();
         this.nome = nome;
-        this.cpf = cpf;
         this.email = email;
     }
 
@@ -35,14 +31,6 @@ public class TitularCurriculo extends PanacheEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getEmail() {
