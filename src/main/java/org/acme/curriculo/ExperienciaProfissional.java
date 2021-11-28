@@ -1,26 +1,21 @@
 package org.acme.curriculo;
 
-import net.bytebuddy.asm.Advice;
+import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Cacheable
-public class ExperienciaProfissional {
+public class ExperienciaProfissional extends PanacheEntity {
 
-    @Id
-    private UUID id;
     private String empresa;
     private String cargo;
     private LocalDate anoInicio;
     private LocalDate anoFim;
 
     public ExperienciaProfissional(String empresa, String cargo, LocalDate anoInicio, LocalDate anoFim) {
-        this.id = UUID.randomUUID();
         this.empresa = empresa;
         this.cargo = cargo;
         this.anoInicio = anoInicio;
@@ -29,10 +24,6 @@ public class ExperienciaProfissional {
 
     @Deprecated
     public ExperienciaProfissional(){}
-
-    public UUID getId() {
-        return id;
-    }
 
     public String getEmpresa() {
         return empresa;

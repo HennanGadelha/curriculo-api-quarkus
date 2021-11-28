@@ -1,0 +1,1 @@
+CREATE DATABASE curriculo-db OWNER curriculo;

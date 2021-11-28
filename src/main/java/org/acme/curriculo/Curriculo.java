@@ -12,27 +12,17 @@ import java.util.UUID;
 @Cacheable
 public class Curriculo extends PanacheEntity {
 
-    @Id
-    private UUID id;
-    @Column(length = 60, unique = true)
     @OneToOne
     private TitularCurriculo titularCurriculo;
-    @OneToMany
-    private List<FormacaoAcademica> formacaoAcademica = new ArrayList<>();
-    @OneToMany
-    private List<ExperienciaProfissional> experienciaProfissional = new ArrayList<>();
 
+    @OneToMany
+    private List<FormacaoAcademica> formacoesAcademicas = new ArrayList<>();
+
+    @OneToMany
+    private List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
 
     @Deprecated
     public Curriculo(){}
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public TitularCurriculo getTitularCurriculo() {
         return titularCurriculo;
@@ -42,19 +32,19 @@ public class Curriculo extends PanacheEntity {
         this.titularCurriculo = titularCurriculo;
     }
 
-    public List<FormacaoAcademica> getFormacaoAcademica() {
-        return formacaoAcademica;
+    public List<FormacaoAcademica> getFormacoesAcademicas() {
+        return formacoesAcademicas;
     }
 
-    public void setFormacaoAcademica(FormacaoAcademica formacaoAcademica) {
-        this.formacaoAcademica.add(formacaoAcademica);
+    public List<ExperienciaProfissional> getExperienciasProfissionais() {
+        return experienciasProfissionais;
     }
 
-    public List<ExperienciaProfissional> getExperienciaProfissional() {
-        return experienciaProfissional;
+    public void addFormacoesAcademicas(FormacaoAcademica formacaoAcademica) {
+        this.formacoesAcademicas.add(formacaoAcademica);
     }
 
-    public void setExperienciaProfissional(ExperienciaProfissional experienciaProfissional) {
-        this.experienciaProfissional.add(experienciaProfissional);
+    public void addExperienciasProfissionais(ExperienciaProfissional experienciaProfissional) {
+        this.experienciasProfissionais.add(experienciaProfissional);
     }
 }

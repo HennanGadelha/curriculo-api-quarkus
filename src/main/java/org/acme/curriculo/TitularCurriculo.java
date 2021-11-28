@@ -9,18 +9,15 @@ import java.util.UUID;
 @Cacheable
 public class TitularCurriculo extends PanacheEntity {
 
-    @Id
-    private UUID id;
-    @Column(length = 60, unique = true)
+    @Column(length = 60)
     private String nome;
-    @Column(length = 60, unique = true)
+    @Column(length = 60)
     private String email;
-    @Column(length = 11, unique = true)
+    @Column(length = 11)
     private String telefone;
 
 
     public TitularCurriculo(String nome, String email, String telefone) {
-        this.id = UUID.randomUUID();
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -43,14 +40,6 @@ public class TitularCurriculo extends PanacheEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getTelefone() {

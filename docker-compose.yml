@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: curriculo
+      POSTGRES_PASSWORD: curriculo
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
