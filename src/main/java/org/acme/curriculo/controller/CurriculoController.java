@@ -16,8 +16,6 @@ import java.util.List;
 @ApplicationScoped
 public class CurriculoController {
 
-
-
     @GET
     public Uni<List<Curriculo>> findAll() {
         return Curriculo.listAll();
@@ -38,30 +36,33 @@ public class CurriculoController {
 
     @POST
     @Transactional
+    @Path("/{id}/formacao-academica")
     public Response adicionarFormacaoAcademica(@PathParam("id") int id, FormacaoAcademica formacaoAcademica) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         formacaoAcademica.persist();
         titular.addFormacoesAcademicas(formacaoAcademica);
 
-        return Response.ok(titular).build();
+        return Response.ok(titular.getFormacoesAcademicas()).build();
     }
 
     @POST
     @Transactional
+    @Path("/{id}/experiencia-profissional")
     public Response adicionarExperienciaProfissional(@PathParam("id") int id, ExperienciaProfissional experienciaProfissional) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         experienciaProfissional.persist();
         titular.addExperienciasProfissionais(experienciaProfissional);
-        return Response.ok(titular).build();
+        return Response.ok(titular.getExperienciasProfissionais()).build();
     }
 
     @POST
     @Transactional
+    @Path("/{id}/finalizar-curriculo")
     public Response finalizarCurriculo(@PathParam("id") int id) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         Curriculo curriculo = new Curriculo(titular);
         curriculo.persist();
-        return Response.ok(titular).build();
+        return Response.ok(curriculo).build();
     }
 
     @DELETE
