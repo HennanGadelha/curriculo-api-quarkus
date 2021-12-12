@@ -34,7 +34,7 @@ public class CurriculoController {
 
     @POST
     @Transactional
-    public Response create(TitularCurriculo titularCurriculo) {
+    public Response criarUsuario(TitularCurriculo titularCurriculo) {
        titularCurriculo.persist();
        return Response.ok(titularCurriculo).build();
     }
@@ -69,6 +69,6 @@ public class CurriculoController {
 
     @DELETE
     public void deleteById(int id){
-        TitularCurriculo.deleteById(id);
+        Curriculo.deleteById(id);
     }
 }
