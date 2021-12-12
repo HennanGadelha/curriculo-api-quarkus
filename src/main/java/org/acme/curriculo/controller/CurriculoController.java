@@ -8,10 +8,7 @@ import org.acme.curriculo.TitularCurriculo;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -41,7 +38,7 @@ public class CurriculoController {
 
     @POST
     @Transactional
-    public Response adicionarFormacaoAcademica(int id, FormacaoAcademica formacaoAcademica) {
+    public Response adicionarFormacaoAcademica(@PathParam("id") int id, FormacaoAcademica formacaoAcademica) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         formacaoAcademica.persist();
         titular.addFormacoesAcademicas(formacaoAcademica);
@@ -51,7 +48,7 @@ public class CurriculoController {
 
     @POST
     @Transactional
-    public Response adicionarExperienciaProfissional(int id, ExperienciaProfissional experienciaProfissional) {
+    public Response adicionarExperienciaProfissional(@PathParam("id") int id, ExperienciaProfissional experienciaProfissional) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         experienciaProfissional.persist();
         titular.addExperienciasProfissionais(experienciaProfissional);
@@ -60,7 +57,7 @@ public class CurriculoController {
 
     @POST
     @Transactional
-    public Response finalizarCurriculo(int id) {
+    public Response finalizarCurriculo(@PathParam("id") int id) {
         TitularCurriculo titular = (TitularCurriculo) TitularCurriculo.findById(id);
         Curriculo curriculo = new Curriculo(titular);
         curriculo.persist();
@@ -68,7 +65,7 @@ public class CurriculoController {
     }
 
     @DELETE
-    public void deleteById(int id){
+    public void deleteById(@PathParam("id") int id){
         Curriculo.deleteById(id);
     }
 }
