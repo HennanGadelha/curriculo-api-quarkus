@@ -12,17 +12,16 @@ import java.util.UUID;
 @Cacheable
 public class Curriculo extends PanacheEntity {
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private TitularCurriculo titularCurriculo;
 
-    @OneToMany
-    private List<FormacaoAcademica> formacoesAcademicas = new ArrayList<>();
-
-    @OneToMany
-    private List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
 
     @Deprecated
     public Curriculo(){}
+
+    public Curriculo(TitularCurriculo titularCurriculo) {
+        this.titularCurriculo = titularCurriculo;
+    }
 
     public TitularCurriculo getTitularCurriculo() {
         return titularCurriculo;
@@ -32,19 +31,5 @@ public class Curriculo extends PanacheEntity {
         this.titularCurriculo = titularCurriculo;
     }
 
-    public List<FormacaoAcademica> getFormacoesAcademicas() {
-        return formacoesAcademicas;
-    }
 
-    public List<ExperienciaProfissional> getExperienciasProfissionais() {
-        return experienciasProfissionais;
-    }
-
-    public void addFormacoesAcademicas(FormacaoAcademica formacaoAcademica) {
-        this.formacoesAcademicas.add(formacaoAcademica);
-    }
-
-    public void addExperienciasProfissionais(ExperienciaProfissional experienciaProfissional) {
-        this.experienciasProfissionais.add(experienciaProfissional);
-    }
 }
